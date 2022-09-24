@@ -7,8 +7,13 @@ import { Button, Typography } from "@mui/material";
 import Marquee from "react-fast-marquee";
 
 const TrackList = () => {
-  const { trackList, currentTrackName, playTrack, isPlaying } =
-    useMusicPlayer();
+  const {
+    trackList,
+    currentTrackName,
+    playTrack,
+    isPlaying,
+    currentTrackIndex,
+  } = useMusicPlayer();
 
   return (
     <>
@@ -50,6 +55,7 @@ const TrackList = () => {
         {trackList.map((track, index) => (
           // ( Surprise us with your code here)
           <Box
+            key={index}
             onClick={() => playTrack(index)}
             sx={{
               width: 170,
@@ -66,7 +72,7 @@ const TrackList = () => {
               },
             }}
           >
-            {isPlaying ? (
+            {isPlaying && currentTrackIndex === index ? (
               <Button sx={{ color: "#322F33" }}>
                 <PauseCircleIcon sx={{ mr: 3 }} />
               </Button>
